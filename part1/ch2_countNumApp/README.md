@@ -37,13 +37,13 @@
 ---
 
 ##  한 걸음 더
-1. 화면의 방향이 변경된다면 어떻게 해야할까?
-   2. 값을 유지하려면 어떻게 해야할까? 
-   3. 화면 방향에 상관없이 버튼을 보이게 하려면 어떻게 해야할까?
-      4. numberTextView의 height 값을 지정하지 않고, weight를 이용
+- 화면의 방향이 변경된다면 어떻게 해야할까?
+  - 값을 유지하려면 어떻게 해야할까? 
+  - 화면 방향에 상관없이 버튼을 보이게 하려면 어떻게 해야할까?
+    - numberTextView의 height 값을 지정하지 않고, weight를 이용
 
 
-2. weight를 넣을 때 dimension에 왜 0dp를 넣으라고 했을까?
-   3. LinearLayout의 weight 값이 적용되기 위해선, orientation에 따라, width 도는 height의 값이 0dp 여야 함
-      4. orientation : vertical -> layout_height = "0dp"
-      5. orientation : horizontal -> layout_width = "0dp"
+- weight를 넣을 때 dimension에 왜 0dp를 넣으라고 했을까?
+   - LinearLayout의 weight 값이 적용되기 위해선, orientation에 따라, width 도는 height의 값이 0dp 여야 함
+      - orientation : vertical -> layout_height = "0dp"
+      - orientation : horizontal -> layout_width = "0dp"
