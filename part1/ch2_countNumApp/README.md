@@ -4,7 +4,7 @@
 
 <br>
 
-![img.png](../ch2_countNumApp/result.png)
+![img.png](../ch2_countNumApp/result.gif)
 
 <br>
 
