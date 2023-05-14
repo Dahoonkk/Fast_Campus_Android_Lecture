@@ -18,14 +18,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/nameValueTextView"
+    <EditText
+        android:id="@+id/nameEditText"
         style="@style/Value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="36dp"
         android:ellipsize="end"
-        android:text="구다훈"
+        android:inputType="text"
         app:layout_constraintBaseline_toBaselineOf="@id/nameTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2" />
@@ -45,9 +45,20 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
+        android:paddingEnd="8dp"
         android:text="0000-00-00"
         app:layout_constraintBaseline_toBaselineOf="@+id/birthdateTextview"
-        app:layout_constraintEnd_toEndOf="@+id/nameValueTextView" />
+        app:layout_constraintEnd_toStartOf="@+id/birthdateImageView"
+        app:layout_constraintStart_toStartOf="@id/guideline2" />
+
+    <ImageView
+        android:id="@+id/birthdateImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_edit_calendar_24"
+        app:layout_constraintBottom_toBottomOf="@+id/birthdateTextview"
+        app:layout_constraintEnd_toEndOf="@id/nameEditText"
+        app:layout_constraintTop_toTopOf="@id/birthdateTextview" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -65,14 +76,38 @@
         app:layout_constraintStart_toStartOf="@id/nameTextView"
         app:layout_constraintTop_toBottomOf="@+id/birthdateTextview" />
 
-    <TextView
-        android:id="@+id/bloodTypeValueTextView"
-        style="@style/Value"
+    <RadioGroup
+        android:id="@+id/bloodtypeRadioGroup"
         android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/bloodTypeTextView"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/bloodTypeTextView">
+
+        <RadioButton
+            android:id="@+id/bloodTypePlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rh+" />
+
+        <RadioButton
+            android:id="@+id/bloodTypeMinus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rh-" />
+
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/bloodtypeSpinner"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="O"
-        app:layout_constraintBaseline_toBaselineOf="@+id/bloodTypeTextView"
-        app:layout_constraintEnd_toEndOf="@+id/nameValueTextView" />
+        app:layout_constraintBottom_toBottomOf="@+id/bloodTypeTextView"
+        app:layout_constraintEnd_toEndOf="@+id/nameEditText"
+        app:layout_constraintStart_toEndOf="@+id/bloodtypeRadioGroup"
+        app:layout_constraintTop_toTopOf="@+id/bloodTypeTextView" />
+
 
     <TextView
         android:id="@+id/phoneTextView"
@@ -83,26 +118,16 @@
         app:layout_constraintStart_toStartOf="@id/nameTextView"
         app:layout_constraintTop_toBottomOf="@+id/bloodTypeTextView" />
 
-    <TextView
-        android:id="@+id/phoneValueTextView"
+    <EditText
+        android:id="@+id/phoneValueEditText"
         style="@style/Value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="0000-0000-0000"
+        android:hint="0000-0000-0000"
+        android:inputType="phone"
         app:layout_constraintBaseline_toBaselineOf="@+id/phoneTextView"
-        app:layout_constraintEnd_toStartOf="@+id/phoneButton"
+        app:layout_constraintEnd_toEndOf="@+id/nameEditText"
         app:layout_constraintStart_toStartOf="@+id/guideline2" />
-
-    <ImageView
-        android:id="@+id/phoneButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/baseline_local_phone_24"
-        app:layout_constraintBottom_toBottomOf="@id/phoneValueTextView"
-        app:layout_constraintEnd_toEndOf="@+id/nameValueTextView"
-        app:layout_constraintTop_toTopOf="@+id/phoneValueTextView" />
-
 
     <TextView
         android:id="@+id/errorTextView"
@@ -113,40 +138,44 @@
         app:layout_constraintStart_toStartOf="@id/nameTextView"
         app:layout_constraintTop_toBottomOf="@+id/phoneTextView" />
 
-    <TextView
-        android:id="@+id/errorValueTextView"
+
+    <CheckBox
+        android:id="@+id/wargningCheckBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end|center_vertical"
+        android:text="주의사항 노출"
+        app:layout_constraintBottom_toBottomOf="@+id/errorTextView"
+        app:layout_constraintEnd_toEndOf="@+id/nameEditText"
+        app:layout_constraintStart_toStartOf="@+id/errorEditText"
+        app:layout_constraintTop_toTopOf="@+id/errorTextView" />
+
+
+    <EditText
+        android:id="@+id/errorEditText"
         style="@style/Value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="주의사항"
-        app:layout_constraintBaseline_toBaselineOf="@+id/errorTextView"
-        app:layout_constraintEnd_toEndOf="@+id/nameValueTextView" />
+        android:hint="주의사항"
+        app:layout_constraintEnd_toEndOf="@+id/nameEditText"
+        app:layout_constraintStart_toStartOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/wargningCheckBox" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/goInputActivityButton"
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="36dp"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/baseline_edit_24" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/deleteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="36dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@id/goInputActivityButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/baseline_delete_24" />
+        app:srcCompat="@drawable/baseline_save_24" />
 
     <androidx.constraintlayout.helper.widget.Layer
-        android:id="@+id/phoneLayer"
+        android:id="@+id/birthdateLayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="phoneButton, phoneValueTextView"
+        app:constraint_referenced_ids="birthdateImageView, birthdateValueTextView"
         tools:ignore="MissingConstraints" />
 
 

@@ -14,7 +14,8 @@
   - 데이터 저장
 
 <br>
-gif 파일
+
+![](result.gif)
 
 <br>
 
@@ -42,3 +43,10 @@ gif 파일
 
 
 ---
+## 🚶🏻한 걸음 더
+- Intent 로 할 수 있는 다양한 동작에 대해 학습해보기
+  - https://developer.android.com/reference/android/content/Intent?hl=ko
+- Manifest 에 들어가는 다양한 값들에 대해 학습해보기
+  - https://developer.android.com/guide/topics/manifest/manifest-intro#reference
+- Kotlin 의 다양한 ScopeFunction 에 대해 학습해보기
+  - https://kotlinlang.org/docs/scope-functions.html
