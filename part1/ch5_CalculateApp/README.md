@@ -7,7 +7,7 @@
 
 <br>
 
-gif 들어갈 자리
+![](result.gif)
 
 <br>
 
@@ -24,3 +24,13 @@ gif 들어갈 자리
 - Kotlin
   - when
   - StringBuilder
+  - BigDecimal
+  - DecimalFormat
+
+<br>
+
+---
+## 🚶🏻 한 걸음 더
+- String vs StringBuilder 언제 사용하는게 좋은지 공부해보기
+  - 많은 양의 문자열 변경이 일어나는 경우 StringBuilder를 사용하는 것이 좋음
+- 직접 계산기 구현해보
