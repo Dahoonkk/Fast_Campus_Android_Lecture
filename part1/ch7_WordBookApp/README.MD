@@ -10,7 +10,7 @@
 
 <br>
 
-gif 들어갈 자리
+![](result1.gif) ![](reuslt2.gif)
 
 <br>
 
