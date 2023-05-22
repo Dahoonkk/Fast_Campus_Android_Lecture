@@ -32,8 +32,8 @@
   |5|**계산기 앱**|<ul><li>- [x] 1. 개요 및 학습 목표 </li><li>- [x] 2. 계산기 UI 그리기 </li><li>- [x] 3. 계산 기능 구현하기 (1) </li><li>- [x] 4. 계산 기능 구현하기 (2) </li><li>- [x] 5. 계산기 UI 꾸미기 </li><li>- [x] 6. 복습 및 한걸음 더 </li></ul>|[Github Repository](part1/ch5_CalculateApp)|
   |6|**스톱워치 앱**|<ul><li>- [x] 1. 개요 및 학습 목표 </li><li>- [x] 2. 스톱워치 UI 그리기 (1) </li><li>- [x] 3. 스톱워치 기능 구현 (1) </li><li>- [x] 4. 안드로이드 스레드 </li><li>- [x] 5. 스톱워치 기능 구현 (2) </li><li>- [x] 6. 스톱워치 UI 그리기 (2) </li><li>- [x] 7. 스톱워치 기능 구현 (3) </li><li>- [x] 8. 복습 및 한걸음 더 </li></ul>|[Github Repository](part1/ch6_Stopwatch/)|
   |7|**단어장 앱**|<ul><li>- [x] 1. 개요 및 학습 목표 </li><li>- [x] 2. 단어장 UI 그리기 (1) </li><li>- [x] 3. 단어장 UI 그리기 (2) </li><li>- [x] 4. 단어장 UI 그리기 (3) </li><li>- [x] 5. 단어장 기능 구현하기 (1) - 저장 </li><li>- [x] 6. 단어장 기능 구현하기 (2) - 읽기, 삭제 </li><li>- [x] 7. 단어장 기능 구현하기 (3) - 수정 </li><li>- [x] 8. 단어장 UI 그리기 (4) </li><li>- [x] 9. 복습 및 한걸음 더 </li></ul>|[Github Repository](part1/ch7_WordBookApp/)|
-  |8|**나만의 액자**|<ul><li>- [ ] 1. 개요 및 학습 목표 </li><li>- [ ] 2. 권한 가져오기 </li><li>- [ ] 3. 갤러리에서 이미지 불러오기 </li><li>- [ ] 4. 액자 UI 그리기 (1) </li><li>- [ ] 5. 액자 UI 그리기 (2) </li><li>- [ ] 6. 액자 UI 그리기 (3) </li><li>- [ ] 7. 액자 UI 그리기 (4) </li><li>- [ ] 8. 복습 및 한걸음 더 </li></ul>|[Github Repository](part1/)|
-  |9|**음악재생 앱**|<ul><li>- [ ] 1. 개요 및 학습 목표 </li><li>- [ ] 2. MediaPlayer로 음원재생 (1) </li><li>- [ ] 3. MediaPlayer로 음원재생 (2) </li><li>- [ ] 4. MediaPlayer로 음원재생 (3) </li><li>- [ ] 5. 디바이스 이벤트 알림 </li><li>- [ ] 6. 복습 및 한걸음 더 </li></ul>|[Github Repository](part1/)|
+  |8|**나만의 액자**|<ul><li>- [x] 1. 개요 및 학습 목표 </li><li>- [x] 2. 권한 가져오기 </li><li>- [x] 3. 갤러리에서 이미지 불러오기 </li><li>- [x] 4. 액자 UI 그리기 (1) </li><li>- [x] 5. 액자 UI 그리기 (2) </li><li>- [x] 6. 액자 UI 그리기 (3) </li><li>- [x] 7. 액자 UI 그리기 (4) </li><li>- [x] 8. 복습 및 한걸음 더 </li></ul>|[Github Repository](part1/ch8_PictureFrameApp/)|
+  |9|**음악재생 앱**|<ul><li>- [x] 1. 개요 및 학습 목표 </li><li>- [x] 2. MediaPlayer로 음원재생 (1) </li><li>- [x] 3. MediaPlayer로 음원재생 (2) </li><li>- [x] 4. MediaPlayer로 음원재생 (3) </li><li>- [x] 5. 디바이스 이벤트 알림 </li><li>- [x] 6. 복습 및 한걸음 더 </li></ul>|[Github Repository](part1/ch9_MusicPlayerApp/)|
 
 </details>
 
