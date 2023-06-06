@@ -41,7 +41,7 @@ class ChatListAdapter : ListAdapter<ChatRoomItem, ChatListAdapter.ViewHolder>(di
         )
     }
 
-    override fun onBindViewHolder(holder: ChatListAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(currentList[position])
     }
 }
