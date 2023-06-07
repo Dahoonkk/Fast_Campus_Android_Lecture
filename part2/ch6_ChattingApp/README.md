@@ -2,7 +2,9 @@
 
 <br>
 
-gif
+![](result1.gif)
+![](result2.gif)
+![](result3.gif)
 
 <br>
 

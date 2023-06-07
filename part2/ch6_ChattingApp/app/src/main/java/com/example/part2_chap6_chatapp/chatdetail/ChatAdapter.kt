@@ -16,8 +16,9 @@ class ChatAdapter : ListAdapter<ChatItem, ChatAdapter.ViewHolder>(differ) {
 
     inner class ViewHolder(private val binding: ItemChatBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(item: ChatItem) {
-            if(item.userId == otherUserItem?.userId) {
+            if (item.userId == otherUserItem?.userId) {
                 binding.usernameTextView.isVisible = true
                 binding.usernameTextView.text = otherUserItem?.username
                 binding.messageTextView.text = item.message
@@ -27,8 +28,24 @@ class ChatAdapter : ListAdapter<ChatItem, ChatAdapter.ViewHolder>(differ) {
                 binding.messageTextView.text = item.message
                 binding.messageTextView.gravity = Gravity.END
             }
+
         }
     }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
+            ItemChatBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(currentList[position])
+    }
+
 
     companion object {
         val differ = object : DiffUtil.ItemCallback<ChatItem>() {
@@ -41,19 +58,5 @@ class ChatAdapter : ListAdapter<ChatItem, ChatAdapter.ViewHolder>(differ) {
             }
 
         }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatAdapter.ViewHolder {
-        return ViewHolder(
-            ItemChatBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
-    }
-
-    override fun onBindViewHolder(holder: ChatAdapter.ViewHolder, position: Int) {
-        holder.bind(currentList[position])
     }
 }
