@@ -18,7 +18,7 @@ data class WeatherHeader(
     @SerializedName("resultCode")
     val resultCode: String,
     @SerializedName("resultMsg")
-    val resultMessage: String,
+    val resultMessage: String
 )
 
 data class WeatherBody(
@@ -37,7 +37,7 @@ data class ForecastEntity(
     @SerializedName("baseTime")
     val baseTime: String,
     @SerializedName("category")
-    val category: Category,
+    val category: Category?,
     @SerializedName("fcstDate")
     val forecastDate: String,
     @SerializedName("fcstTime")
