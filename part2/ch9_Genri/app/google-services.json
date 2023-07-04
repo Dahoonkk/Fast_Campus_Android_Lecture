@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1035275561629",
+    "project_id": "part2-ch9-genri-test",
+    "storage_bucket": "part2-ch9-genri-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035275561629:android:ee71adb79f1042a9e00274",
+        "android_client_info": {
+          "package_name": "com.example.part2_ch9_genri"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1035275561629-chefroiqf463teug6i0ea23512dnh04u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9b78mnH8XlAFi8AmcgdF8OfmF5pjvfLs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1035275561629-chefroiqf463teug6i0ea23512dnh04u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
