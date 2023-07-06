@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.ClientError
@@ -43,6 +44,15 @@ class LoginActivity: AppCompatActivity() {
         setContentView(binding.root)
 
         KakaoSdk.init(this, "fc8cffc5fe71d6d63945f3d803ed0d31")
+
+        // 이미 로그인(카카오 계정으로)되어 있는 경우 바로 지도 불러오기
+        if(AuthApiClient.instance.hasToken()) {
+            UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
+                if (error == null) {
+                    getKakaoAccountInfo()
+                }
+            }
+        }
 
         emailLoginResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if(it.resultCode == RESULT_OK) {
@@ -134,8 +144,6 @@ class LoginActivity: AppCompatActivity() {
              if(it.isSuccessful) {
                  // 다음 과정으로 넘어감
                  updateFirebaseDatabase(user)
-             } else {
-                 showErrorToast()
              }
          }.addOnFailureListener {
              // 이미 가입된 계정
