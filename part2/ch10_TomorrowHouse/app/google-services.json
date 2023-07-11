@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "400344356567",
+    "project_id": "part2-ch10-tomorrowhouse",
+    "storage_bucket": "part2-ch10-tomorrowhouse.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400344356567:android:6d844ed465abb403260292",
+        "android_client_info": {
+          "package_name": "com.example.part2_ch10_tomorrowhouse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "400344356567-m3eo156vc6f36gvnf8jkr7e6q6ir3948.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYcsMSSsAvy2OE_2NSVEddF9_u2BwVDIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "400344356567-m3eo156vc6f36gvnf8jkr7e6q6ir3948.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
