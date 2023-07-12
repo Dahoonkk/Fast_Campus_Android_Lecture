@@ -8,11 +8,20 @@
         android:id="@+id/homeFragment"
         android:name="com.example.part2_ch10_tomorrowhouse.HomeFragment"
         tools:layout="@layout/fragment_home"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_writeArticleFragment"
+            app:destination="@id/writeArticleFragment" />
+    </fragment>
     <fragment
         android:id="@+id/authFragment"
         android:name="com.example.part2_ch10_tomorrowhouse.AuthFragment"
         tools:layout="@layout/fragment_auth"
         android:label="AuthFragment" >
     </fragment>
+    <fragment
+        android:id="@+id/writeArticleFragment"
+        android:name="com.example.part2_ch10_tomorrowhouse.ui.article.WriteArticleFragment"
+        android:label="WriteArticleFragment"
+        tools:layout="@layout/fragment_write"/>
 </navigation>
