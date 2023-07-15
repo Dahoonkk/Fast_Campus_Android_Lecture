@@ -4,14 +4,17 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.part2_ch10_tomorrowhouse.R
+import com.example.part2_ch10_tomorrowhouse.data.ArticleModel
 import com.example.part2_ch10_tomorrowhouse.databinding.FragmentWriteBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.util.UUID
@@ -27,8 +30,8 @@ class WriteArticleFragment : Fragment(R.layout.fragment_write) {
             if (uri != null) {
                 selectedUri = uri
                 binding.photoImageView.setImageURI(uri)
-            } else {
-                Log.d("PhotoPicker", "No media selected")
+                binding.addButton.isVisible = false
+                binding.deleteButton.isVisible = true
             }
         }
 
@@ -125,6 +128,29 @@ class WriteArticleFragment : Fragment(R.layout.fragment_write) {
     }
 
     private fun uploadArticle(photoURl: String, description: String) {
+        val articleId = UUID.randomUUID().toString()
+        val articleModel = ArticleModel(
+            articleId = articleId,
+            createdAt = System.currentTimeMillis(),
+            description = description,
+            imageUrl = photoURl,
+        )
 
+        Firebase.firestore.collection("articles").document(articleId)
+            .set(articleModel)
+            .addOnSuccessListener {
+                findNavController().navigate(WriteArticleFragmentDirections.actionWriteArticleFragmentToHomeFragment2())
+
+                hideProgress()
+            }.addOnFailureListener {
+                it.printStackTrace()
+                view?.let { view ->
+                    Snackbar.make(view, "글 작성에 실패했습니다.", Snackbar.LENGTH_SHORT).show()
+                }
+
+                hideProgress()
+            }
+
+        hideProgress()
     }
 }
