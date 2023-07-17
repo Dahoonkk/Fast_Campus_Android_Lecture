@@ -2,13 +2,13 @@ package com.example.part2_ch10_tomorrowhouse.ui.article
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
 import com.example.part2_ch10_tomorrowhouse.R
 import com.example.part2_ch10_tomorrowhouse.data.ArticleModel
@@ -23,15 +23,14 @@ class WriteArticleFragment : Fragment(R.layout.fragment_write) {
 
     private lateinit var binding: FragmentWriteBinding
 
+    private lateinit var viewModel: WriteArticleViewModel
+
     private var selectedUri: Uri? = null
 
     private val pickMedia =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
             if (uri != null) {
-                selectedUri = uri
-                binding.photoImageView.setImageURI(uri)
-                binding.addButton.isVisible = false
-                binding.deleteButton.isVisible = true
+                viewModel.updateSelectedUri(uri)
             }
         }
 
@@ -39,11 +38,33 @@ class WriteArticleFragment : Fragment(R.layout.fragment_write) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentWriteBinding.bind(view)
 
-        startPicker()
+        setupViewModel()
+
+        if(viewModel.selectedUri.value == null) {
+            startPicker()
+        }
         setupPhotoImageView()
         setupDeleteButton()
         setupSubmitButton(view)
         setupBackButton()
+
+
+    }
+
+    private fun setupViewModel() {
+        viewModel = ViewModelProvider(requireActivity()).get<WriteArticleViewModel>()
+
+        viewModel.selectedUri.observe(viewLifecycleOwner) {
+            binding.photoImageView.setImageURI(it)
+
+            if (it != null) {
+                binding.plusButton.isVisible = false
+                binding.deleteButton.isVisible = true
+            } else {
+                binding.deleteButton.isVisible = false
+                binding.plusButton.isVisible = true
+            }
+        }
     }
 
     private fun showProgress() {
@@ -85,10 +106,8 @@ class WriteArticleFragment : Fragment(R.layout.fragment_write) {
 
     private fun setupDeleteButton() {
         binding.deleteButton.setOnClickListener {
-            binding.photoImageView.setImageURI(null)
-            selectedUri = null
-            binding.deleteButton.isVisible = false
-            binding.addButton.isVisible = true
+            // binding.photoImageView.setImageURI(null)
+            viewModel.updateSelectedUri(null)
         }
     }
 
@@ -139,7 +158,7 @@ class WriteArticleFragment : Fragment(R.layout.fragment_write) {
         Firebase.firestore.collection("articles").document(articleId)
             .set(articleModel)
             .addOnSuccessListener {
-                findNavController().navigate(WriteArticleFragmentDirections.actionWriteArticleFragmentToHomeFragment2())
+                findNavController().navigate(WriteArticleFragmentDirections.actionWriteArticleFragmentToHomeFragment())
 
                 hideProgress()
             }.addOnFailureListener {
