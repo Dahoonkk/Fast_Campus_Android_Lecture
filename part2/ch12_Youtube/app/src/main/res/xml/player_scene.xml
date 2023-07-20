@@ -11,6 +11,7 @@
         <OnSwipe
             motion:touchRegionId="@id/videoPlayerContainer"
             motion:touchAnchorId="@id/videoPlayerContainer" />
+
         <OnClick
             motion:clickAction="transitionToEnd"
             motion:targetId="@id/videoPlayerContainer" />
