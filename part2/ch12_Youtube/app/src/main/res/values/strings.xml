@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">part2_ch12_youtube</string>
+    <string name="app_name">요튜브</string>
+    <string name="sub_title_video_info">%s · 조회소 %s · %s</string>
 </resources>
