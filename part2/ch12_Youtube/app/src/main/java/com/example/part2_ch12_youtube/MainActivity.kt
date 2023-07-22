@@ -1,11 +1,14 @@
 package com.example.part2_ch12_youtube
 
+import com.example.part2_ch12_youtube.databinding.ActivityMainBinding
+import com.example.part2_ch12_youtube.player.PlayerHeader
+import com.example.part2_ch12_youtube.player.PlayerVideoAdapter
+import com.example.part2_ch12_youtube.player.transform
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.part2_ch12_youtube.databinding.ActivityMainBinding
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -31,31 +34,15 @@ class MainActivity : AppCompatActivity() {
 
         initMotionLayout()
         initVideoRecyclerView()
-
         initPlayerVideoRecyclerView()
-
         initControlButton()
+        initHideButton()
+    }
 
+    private fun initHideButton() {
         binding.hideButton.setOnClickListener {
             binding.motionLayout.transitionToState(R.id.hide)
             player?.pause()
-        }
-
-        videoAdapter.submitList(videoList.videos)
-        playerVideoAdapter.submitList(videoList.videos)
-
-    }
-
-    private fun initPlayerVideoRecyclerView() {
-        playerVideoAdapter = PlayerVideoAdapter(context = this) { videoEntity ->
-            play(videoEntity)
-
-            val list = listOf(videoEntity) + videoList.videos.filter { it.id != videoEntity.id }
-            playerVideoAdapter.submitList(list)
-        }
-        binding.playerRecyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = playerVideoAdapter
         }
     }
 
@@ -68,7 +55,6 @@ class MainActivity : AppCompatActivity() {
                     it.play()
                 }
             }
-
         }
     }
 
@@ -77,26 +63,61 @@ class MainActivity : AppCompatActivity() {
             binding.motionLayout.setTransition(R.id.collapse, R.id.expand)
             binding.motionLayout.transitionToEnd()
 
-            val list = listOf(videoItem) + videoList.videos.filter {
-                it.id != videoItem.id
-            }
+            val headerModel = PlayerHeader(
+                id = "H${videoItem.id}",
+                title = videoItem.title,
+                channelName = videoItem.channelName,
+                viewCount = videoItem.viewCount,
+                dateText = videoItem.dateText,
+                channelThumb = videoItem.channelThumb
+            )
+
+            val list = listOf(headerModel) + videoList.videos.filter { it.id != videoItem.id }
+                .map { it.transform() }
             playerVideoAdapter.submitList(list)
 
-            play(videoItem)
+            play(videoItem.videoUrl, videoItem.title)
         }
-
         binding.videoListRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = videoAdapter
         }
 
+        videoAdapter.submitList(videoList.videos)
+    }
+
+    private fun initPlayerVideoRecyclerView() {
+        playerVideoAdapter = PlayerVideoAdapter(context = this) { playerVideo ->
+            play(playerVideo.videoUrl, playerVideo.title)
+
+            val headerModel = PlayerHeader(
+                id = "H${playerVideo.id}",
+                title = playerVideo.title,
+                channelName = playerVideo.channelName,
+                viewCount = playerVideo.viewCount,
+                dateText = playerVideo.dateText,
+                channelThumb = playerVideo.channelThumb
+            )
+
+            val list = listOf(headerModel) + videoList.videos.filter { it.id != playerVideo.id }
+                .map { it.transform() }
+            playerVideoAdapter.submitList(list) {
+                binding.playerRecyclerView.scrollToPosition(0)
+            }
+
+        }
+
+        binding.playerRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = playerVideoAdapter
+            itemAnimator = null
+        }
         val videoList = readData("videos.json", VideoList::class.java) ?: VideoList(emptyList())
         videoAdapter.submitList(videoList.videos)
     }
 
     private fun initMotionLayout() {
         binding.motionLayout.targetView = binding.videoPlayerContainer
-
         binding.motionLayout.jumpToState(R.id.hide)
 
         binding.motionLayout.setTransitionListener(object : MotionLayout.TransitionListener {
@@ -105,7 +126,6 @@ class MainActivity : AppCompatActivity() {
                 startId: Int,
                 endId: Int
             ) {
-
             }
 
             override fun onTransitionChange(
@@ -127,11 +147,10 @@ class MainActivity : AppCompatActivity() {
                 positive: Boolean,
                 progress: Float
             ) {
-                TODO("Not yet implemented")
             }
-
         })
     }
+
 
     private fun initExoPlayer() {
         player = ExoPlayer.Builder(this).build()
@@ -140,6 +159,7 @@ class MainActivity : AppCompatActivity() {
                 binding.playerView.useController = false
 
                 exoPlayer.addListener(object : Player.Listener {
+
                     override fun onIsPlayingChanged(isPlaying: Boolean) {
                         super.onIsPlayingChanged(isPlaying)
 
@@ -151,14 +171,15 @@ class MainActivity : AppCompatActivity() {
                     }
                 })
             }
+
     }
 
-    private fun play(videoItem: VideoEntity) {
-        player?.setMediaItem(MediaItem.fromUri(Uri.parse(videoItem.videoUrl)))
+    private fun play(videoUrl: String, videoTitle: String) {
+        player?.setMediaItem(MediaItem.fromUri(Uri.parse(videoUrl)))
         player?.prepare()
         player?.play()
 
-        binding.videoTitleTextView.text = videoItem.title
+        binding.videoTitleTextView.text = videoTitle
     }
 
     override fun onStart() {
@@ -167,16 +188,13 @@ class MainActivity : AppCompatActivity() {
         if (player == null) {
             initExoPlayer()
         }
-
     }
 
     override fun onResume() {
         super.onResume()
-
         if (player == null) {
             initExoPlayer()
         }
-
     }
 
     override fun onStop() {
