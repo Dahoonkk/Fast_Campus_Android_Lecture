@@ -16,7 +16,12 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
+    private val videoList: VideoList by lazy {
+        readData("videos.json", VideoList::class.java) ?: VideoList(emptyList())
+    }
+
     private lateinit var videoAdapter: VideoAdapter
+    private lateinit var playerVideoAdapter: PlayerVideoAdapter
 
     private var player: ExoPlayer? = null
 
@@ -25,8 +30,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initMotionLayout()
-
         initVideoRecyclerView()
+
+        initPlayerVideoRecyclerView()
 
         initControlButton()
 
@@ -35,6 +41,22 @@ class MainActivity : AppCompatActivity() {
             player?.pause()
         }
 
+        videoAdapter.submitList(videoList.videos)
+        playerVideoAdapter.submitList(videoList.videos)
+
+    }
+
+    private fun initPlayerVideoRecyclerView() {
+        playerVideoAdapter = PlayerVideoAdapter(context = this) { videoEntity ->
+            play(videoEntity)
+
+            val list = listOf(videoEntity) + videoList.videos.filter { it.id != videoEntity.id }
+            playerVideoAdapter.submitList(list)
+        }
+        binding.playerRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = playerVideoAdapter
+        }
     }
 
     private fun initControlButton() {
@@ -55,6 +77,11 @@ class MainActivity : AppCompatActivity() {
             binding.motionLayout.setTransition(R.id.collapse, R.id.expand)
             binding.motionLayout.transitionToEnd()
 
+            val list = listOf(videoItem) + videoList.videos.filter {
+                it.id != videoItem.id
+            }
+            playerVideoAdapter.submitList(list)
+
             play(videoItem)
         }
 
@@ -72,7 +99,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.motionLayout.jumpToState(R.id.hide)
 
-        binding.motionLayout.setTransitionListener(object: MotionLayout.TransitionListener {
+        binding.motionLayout.setTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionStarted(
                 motionLayout: MotionLayout?,
                 startId: Int,
@@ -108,15 +135,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun initExoPlayer() {
         player = ExoPlayer.Builder(this).build()
-            .also{ exoPlayer ->
+            .also { exoPlayer ->
                 binding.playerView.player = exoPlayer
                 binding.playerView.useController = false
 
-                exoPlayer.addListener(object: Player.Listener {
+                exoPlayer.addListener(object : Player.Listener {
                     override fun onIsPlayingChanged(isPlaying: Boolean) {
                         super.onIsPlayingChanged(isPlaying)
 
-                        if(isPlaying) {
+                        if (isPlaying) {
                             binding.controlButton.setImageResource(R.drawable.baseline_pause_24)
                         } else {
                             binding.controlButton.setImageResource(R.drawable.baseline_play_arrow_24)
@@ -137,7 +164,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        if(player == null) {
+        if (player == null) {
             initExoPlayer()
         }
 
@@ -146,7 +173,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        if(player == null) {
+        if (player == null) {
             initExoPlayer()
         }
 
