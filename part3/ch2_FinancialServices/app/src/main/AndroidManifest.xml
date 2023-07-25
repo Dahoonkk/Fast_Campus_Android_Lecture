@@ -21,6 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.part3_ch2_financialservices.PinActivity" />
+        <activity android:name="com.example.part3_ch2_financialservices.IdentityInputActivity" />
+        <activity android:name="com.example.part3_ch2_financialservices.VerifyOtpActivity" />
     </application>
 
 </manifest>
