@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="" />
+            type="com.haru.part3_ch3_walletservice.model.DetailItem" />
     </data>
 
     <LinearLayout
