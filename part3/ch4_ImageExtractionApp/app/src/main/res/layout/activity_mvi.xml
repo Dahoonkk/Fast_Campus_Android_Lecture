@@ -7,7 +7,7 @@
 
         <variable
             name="view"
-            type="com.example.part3_ch4_imageexractionapp.mvc.MvcActivity" />
+            type="com.example.part3_ch4_imageexractionapp.mvi.MviActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,11 +17,12 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="아래의 버튼을 클릭해보세요"
+            android:text="아래의 버튼을 클릭해보세요."
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView"
@@ -34,8 +35,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progressView"
+            style="?android:progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/imageCountTextview"
+            android:id="@+id/imageCountTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -48,12 +60,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:onClick="@{() -> view.loadImage()}"
             android:text="이미지 불러오기"
+            android:onClick="@{() -> view.loadImage()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="HardcodedText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

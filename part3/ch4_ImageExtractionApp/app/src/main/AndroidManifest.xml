@@ -24,6 +24,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".mvc.MvcActivity"/>
+        <activity android:name="com.example.part3_ch4_imageexractionapp.mvp.MvpActivity" />
+        <activity android:name="com.example.part3_ch4_imageexractionapp.mvvm.MvvmActivity" />
+        <activity android:name="com.example.part3_ch4_imageexractionapp.mvi.MviActivity" />
     </application>
 
 </manifest>

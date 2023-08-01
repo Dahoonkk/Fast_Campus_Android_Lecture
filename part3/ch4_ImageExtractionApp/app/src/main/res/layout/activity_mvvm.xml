@@ -7,7 +7,12 @@
 
         <variable
             name="view"
-            type="com.example.part3_ch4_imageexractionapp.mvc.MvcActivity" />
+            type="com.example.part3_ch4_imageexractionapp.mvvm.MvvmActivity" />
+
+        <variable
+            name="viewModel"
+            type="com.example.part3_ch4_imageexractionapp.mvvm.MvvmViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,13 +20,15 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatTextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="아래의 버튼을 클릭해보세요"
+            android:text="아래의 버튼을 클릭해보세요."
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView"
@@ -29,16 +36,18 @@
             android:layout_height="0dp"
             android:layout_marginBottom="96dp"
             android:scaleType="centerCrop"
+            app:image="@{viewModel.imageLiveData}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/imageCountTextview"
+            android:id="@+id/imageCountTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:text="@{viewModel.countLiveData}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="불러온 이미지 : 1" />
@@ -52,8 +61,7 @@
             android:text="이미지 불러오기"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="HardcodedText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

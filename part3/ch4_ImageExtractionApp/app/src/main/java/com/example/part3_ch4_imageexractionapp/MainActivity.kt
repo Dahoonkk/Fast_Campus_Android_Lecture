@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.part3_ch4_imageexractionapp.databinding.ActivityMainBinding
 import com.example.part3_ch4_imageexractionapp.mvc.MvcActivity
+import com.example.part3_ch4_imageexractionapp.mvi.MviActivity
+import com.example.part3_ch4_imageexractionapp.mvp.MvpActivity
+import com.example.part3_ch4_imageexractionapp.mvvm.MvvmActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,14 +26,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openMvp() {
-
+        startActivity(Intent(this, MvpActivity::class.java))
     }
 
     fun openMvvm() {
-
+        startActivity(Intent(this, MvvmActivity::class.java))
     }
 
     fun openMvi() {
-
+        startActivity(Intent(this, MviActivity::class.java))
     }
 }

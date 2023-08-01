@@ -2,7 +2,7 @@
 
 <br>
 
-gif 
+![](result.gif)
 
 <br>
 
@@ -43,3 +43,79 @@ gif
   - View와 Model의 결합도 상승
   - 테스트코드 작성의 어려움
   - 현재는 많이 사용하지는 않지만 규모가 작고 빠르게 어플을 만들어야 하는 경우 사용
+
+<br>
+
+---
+## 📌 MVP 패턴이란?
+- Model
+  - 데이터를 관리
+  - 비즈니스 로직 수행
+- View
+  - 유저에게 보일 화면을 표현
+  - Presenter에 의존적
+- Presenter
+  - Model과 View를 연결
+  - View에 Interface로 연결
+
+![img_1.png](img_1.png)
+
+- 장점
+  - View와 Model 간의 의존성이 없음
+  - UI와 비즈니스 로직 분리
+  - Unit Test 수월
+- 단점
+  - View와 Presenter가 1:1 관계
+  - View가 많아지면 Presenter도 많아짐
+  - 기능이 추가 될수록 Presenter가 비대해짐
+
+<br>
+
+---
+## 📌 MVVM 패턴이란?
+- Model
+  - 데이터를 관리
+  - 비지니스 로직 수행
+- View
+  - 유저에게 보일 화면을 표현
+  - ViewModel의 데이터를 관찰
+- viewModel
+  - Model과 View를 연결
+  - DataBinding과 LiveData를 통해 View에 데이터를 전달
+
+![img_2.png](img_2.png)
+
+- 장점
+  - View가 데이터를 실시간으로 관찰
+  - 생명주기로부터 안전
+  - View와 ViewModel 결합도가 느슨
+  - 모듈별로 분리하여 개발 가능
+  - Unit Test 수월
+- 단점
+  - 다른 디자인 패턴에 비해 복잡
+  - DataBinding, LiveData 등 다른 라이브러리를 필수적으로 학습
+
+<br>
+
+---
+## 📌 MVI 패턴이란?
+- Model
+  - 모든 상태를 나타냄
+- View
+  - 유저에게 보여지는 화면
+  - 상태를 받아 화면에 표시
+- Intent
+  - 앱 내에서 발생하는 Action
+- SideEffects
+  - 상태 변경이 필요 없는 API나 DB 접근 등의 이벤트
+
+![img_3.png](img_3.png)
+
+- 장점
+  - 하나의 상태만 관리하기 때문에 상태 충돌이 없다
+  - 선순환 구조라 흐름을 이해하기 쉬움
+  - 불변 객체이기 때문에 스레드에 안전
+- 단점
+  - 다른 패턴에 비해 러닝커브가 높다
+  - 작은 변경에도 Intent를 거쳐야 함
+  - 보일러플레이트 코드가 발생한다
