@@ -8,7 +8,9 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.android.databinding.FragmentSearchBinding
+import com.android.list.ItemHandler
 import com.android.list.ListAdapter
+import com.android.model.ListItem
 import com.android.repository.SearchRepositoryImpl
 
 class SearchFragment: Fragment() {
@@ -19,7 +21,7 @@ class SearchFragment: Fragment() {
 
     private var binding: FragmentSearchBinding? = null
 
-    private val adapter by lazy { ListAdapter()  }
+    private val adapter by lazy { ListAdapter(Handler(viewModel))  }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +49,7 @@ class SearchFragment: Fragment() {
     }
 
     fun searchKeyword(text : String) {
-
+        viewModel.search(text)
     }
 
     private fun observeViewModel() {
@@ -63,6 +65,13 @@ class SearchFragment: Fragment() {
             }
             adapter.submitList(it)
         }
+    }
+
+    class Handler(private val viewModel: SearchViewModel): ItemHandler {
+        override fun onClickFavorite(item: ListItem) {
+
+        }
+
     }
 
 }

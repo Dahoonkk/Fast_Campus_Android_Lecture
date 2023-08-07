@@ -31,7 +31,7 @@ class SearchViewModel(private val searchRepository: SearchRepository) : ViewMode
             })
         )
     }
-/*
+
     fun toggleFavorite(item: ListItem) {
         _listLiveData.value = _listLiveData.value?.map {
             if (it == item) {
@@ -56,7 +56,7 @@ class SearchViewModel(private val searchRepository: SearchRepository) : ViewMode
                 it
             }
         }
-    }*/
+    }
 
     override fun onCleared() {
         super.onCleared()

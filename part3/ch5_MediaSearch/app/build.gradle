@@ -35,6 +35,10 @@ android {
     buildFeatures {
         dataBinding = true
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -58,4 +62,8 @@ dependencies {
 
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
     implementation 'androidx.fragment:fragment-ktx:1.6.1'
+
+    // test code 관련
+    testImplementation 'org.mockito:mockito-inline:5.0.0'
+    testImplementation 'androidx.arch.core:core-testing:2.2.0'
 }
