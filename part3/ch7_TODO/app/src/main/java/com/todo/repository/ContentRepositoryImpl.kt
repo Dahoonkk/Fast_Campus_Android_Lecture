@@ -15,4 +15,8 @@ class ContentRepositoryImpl @Inject constructor(private val contentDao: ContentD
     override suspend fun modify(item: ContentEntity) {
         contentDao.insert(item) // 덮어씌워지게 해뒀기 때문에 그냥 insert
     }
+
+    override suspend fun delete(item: ContentEntity) {
+        contentDao.delete(item)
+    }
 }

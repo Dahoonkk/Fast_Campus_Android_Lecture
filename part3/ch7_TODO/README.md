@@ -2,7 +2,7 @@
 
 <br>
 
-gif
+![](result.gif)
 
 <br>
 
@@ -39,3 +39,23 @@ gif
   - Entity
   - DAO(Data Access Objects)
   - Room DataBase
+
+---
+### ❗ 디자인 가이드가 변경되면 한번에 적용하는 방법이 있을까?
+
+- Android Styling System을 활용하면 된다.
+![img_1.png](img_1.png)
+1. View Attirubtes
+   - 각각의 view 속성을 명시적으로 설정
+   - 다만 view의 속성은 재사용 불가
+   - Theme나 Style을 통해 설정하는 모든 속성을 view attribute에 사용할 수 있음
+2. Styles
+   - 작은 디자인 모음을 정의할 때 사용
+   - 여러 뷰에 일관된 스타일을 제공
+3. Defualt Style
+   - 안드로이드 기본 Style
+4. Themes
+   - 안드로이드 전체의 색상을 정의 및 기본 글꼴 등을 설정할 수 있음
+   - 앱 전체에 일관되게 적용시킬 속성에 대해 정의함
+5. TextApearance
+   - FontFamily와 같은 텍스트 속성에 대해서만 사용
