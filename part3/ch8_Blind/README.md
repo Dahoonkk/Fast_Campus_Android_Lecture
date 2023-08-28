@@ -22,3 +22,12 @@ result
 - Retrofit2
 - Room
 - Clean architecture
+
+---
+### 📌 Clean Architecture 란?
+![img.png](img.png)
+
+<br>
+
+#### ⁉️ Android에서 Clean Architecture란?
+![img_1.png](img_1.png)
